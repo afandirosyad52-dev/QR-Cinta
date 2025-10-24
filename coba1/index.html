@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buat Zuka 💌</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      margin: 0;
+      color: #333;
+    }
+
+    h1 {
+      font-size: 26px;
+      margin-bottom: 30px;
+      text-align: center;
+      animation: float 2s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    button {
+      font-size: 18px;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    #tolak {
+      background-color: #ff4b5c;
+      color: white;
+      margin-right: 20px;
+    }
+
+    #tolak:hover {
+      background-color: #ff1e3d;
+      transform: scale(1.05);
+    }
+
+    #iya {
+      background-color: #ffb6c1;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    #iya:hover {
+      background-color: #ff80ab;
+      transform: scale(1.05) rotate(2deg);
+    }
+
+    #pesan {
+      margin-top: 25px;
+      font-size: 20px;
+      color: #fff;
+      text-shadow: 1px 1px 3px #000;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* animasi hati */
+    .heart {
+      position: fixed;
+      top: -10px;
+      font-size: 20px;
+      color: #ff5f9e;
+      animation: fall 3s linear forwards;
+      user-select: none;
+      z-index: 9999;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>`
+  <h1>Hai  💕<br>Kamu mau jadi pacarku gak? 😳</h1>
+  <div>
+    <button id="tolak">Tolak 😭</button>
+    <button id="iya">Iya ❤️</button>
+  </div>
+  <p id="pesan"></p>
+
+  <script>
+    let countTolak = 0;
+    const maxTolak = 10;
+    const pesan = document.getElementById("pesan");
+    const btnTolak = document.getElementById("tolak");
+    const btnIya = document.getElementById("iya");
+
+    // tombol tolak ditekan
+    btnTolak.addEventListener("click", () => {
+      countTolak++;
+      if (countTolak < maxTolak) {
+        pesan.textContent = `Kok ditolak lagi sih Zuka? (${countTolak}/${maxTolak}) 😢`;
+      } else {
+        pesan.textContent = "Udah capek ditolak terus 😭 Sekarang tinggal tombol 'Iya' aja ya Zuka ❤️";
+        btnTolak.style.display = "none";
+      }
+    });
+
+    // tombol iya ditekan
+    btnIya.addEventListener("click", () => {
+      pesan.textContent = "YEAY! Zuka akhirnya bilang IYA 💖🥰 Aku janji bakal bikin kamu bahagia terus~ 💕";
+      for (let i = 0; i < 40; i++) {
+        buatHati();
+      }
+    });
+
+    // fungsi animasi hati jatuh
+    function buatHati() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.textContent = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (2 + Math.random() * 3) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 4000);
+    }
+
+    // efek hati jatuh terus menerus ringan
+    setInterval(buatHati, 1000);
+  </script>
+</body>
+</html>
